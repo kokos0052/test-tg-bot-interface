@@ -19,8 +19,8 @@ function Form() {
   }, [country, street, subject, tg]);
 
   useEffect(() => {
-    tg.WebApp.onEvent("mainButtonClicked", onSendData);
-    return tg.WebApp.offEvent("mainButtonClicked", onSendData);
+    tg.onEvent("mainButtonClicked", onSendData);
+    return tg.offEvent("mainButtonClicked", onSendData);
   }, [tg, onSendData]);
 
   useEffect(() => {
