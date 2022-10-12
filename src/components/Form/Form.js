@@ -11,16 +11,18 @@ function Form() {
 
   const onSendData = useCallback(() => {
     const data = {
-        country,
-        street,
-        subject,
-    }; 
+      country,
+      street,
+      subject,
+    };
     tg.sendData(JSON.stringify(data));
   }, [country, street, subject, tg]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
-    return tg.offEvent("mainButtonClicked", onSendData);
+    return () => {
+      tg.offEvent("mainButtonClicked", onSendData);
+    };
   }, [tg, onSendData]);
 
   useEffect(() => {
